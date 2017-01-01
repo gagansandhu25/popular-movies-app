@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Moviz</string>
+    <string name="most_popular_text">" - Most Popular"</string>
+    <string name="top_rated_text">" - Top Rated"</string>
+</resources>

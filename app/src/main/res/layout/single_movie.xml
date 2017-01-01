@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/ScrollView01"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+                android:padding="@dimen/activity_horizontal_margin"
+              android:layout_height="match_parent">
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/movieNameLabel"
+        android:textColor="#ffffffff"
+        android:background="@color/colorAccent"
+        android:padding="15dp"
+        tools:text="Suicide Squad"
+        android:textSize="22sp"
+        android:textAlignment="center"
+        android:textStyle="bold"/>
+
+    <ImageView
+        android:layout_width="159dp"
+        android:layout_height="247dp"
+        app:srcCompat="@drawable/image_01"
+        android:id="@+id/movieImageView"
+        android:layout_below="@+id/movieNameLabel"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="30dp"/>
+
+    <TextView
+        android:text="Average Rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/movieDateLabel"
+        android:layout_alignLeft="@+id/movieDateLabel"
+        android:layout_alignStart="@+id/movieDateLabel"
+        android:layout_marginTop="5dp"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:text="A rogue band of resistance fighters unite for a mission to steal the Death Star plans and bring a new hope to the galaxy."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/movieImageView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/moviePlotLabel"
+        android:textSize="15sp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:text="8.5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/movieRatingLabel"
+        android:layout_alignBottom="@+id/textView3"
+        android:layout_toRightOf="@+id/textView3"
+        android:layout_toEndOf="@+id/textView3"
+        android:layout_marginLeft="6dp"
+        android:textStyle="normal|bold"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:text="March 2015"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="14dp"
+        android:layout_marginStart="14dp"
+        android:id="@+id/movieDateLabel"
+        android:textSize="20sp"
+        android:layout_alignTop="@+id/movieImageView"
+        android:layout_toRightOf="@+id/movieImageView"
+        android:layout_toEndOf="@+id/movieImageView"/>
+</RelativeLayout>
+
+</ScrollView>
