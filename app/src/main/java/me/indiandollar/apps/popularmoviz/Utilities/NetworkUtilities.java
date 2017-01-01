@@ -111,7 +111,7 @@ public class NetworkUtilities {
                         });
                     }
                     else {
-                        Log.d(TAG, "onResponse: error");
+                        //Log.d(TAG, "onResponse: error");
                     }
 
                 }
@@ -119,7 +119,12 @@ public class NetworkUtilities {
 
         }
         else {
-            Log.d(TAG, "network not available");
+            mActivity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(mActivity, "Network unavailable", Toast.LENGTH_LONG).show();
+                }
+            });
         }
 
         //Log.d(TAG, "makeRequest: " + jsonData);
