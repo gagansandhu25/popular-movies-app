@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListView
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:id="@+id/reviewsHolder"
+        xmlns:android="http://schemas.android.com/apk/res/android"></ListView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:id="@+id/offlineTextView"
+        android:visibility="invisible"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/no_internet_small"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Can't get reviews, no internet"
+            android:layout_gravity="center_horizontal"
+
+            />
+    </LinearLayout>
+</FrameLayout>

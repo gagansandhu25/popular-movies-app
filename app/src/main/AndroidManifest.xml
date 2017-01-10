@@ -10,8 +10,9 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
+
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activities.MainActivity" android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -20,10 +21,15 @@
 
         </activity>
 
-        <activity android:name=".SingleMovieActivity">
+        <activity android:name=".Activities.SingleMovieActivity" android:theme="@style/AppThemeFloatingActionBar">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
-                       android:value=".MainActivity"></meta-data>
+                       android:value=".Activities.MainActivity"></meta-data>
         </activity>
+        
+        <provider
+            android:authorities="me.indiandollar.apps.popularmoviz"
+            android:name="me.indiandollar.apps.popularmoviz.Providers.MoviesContentProvider"
+            android:exported="false"></provider>
     </application>
 
 </manifest>

@@ -1,23 +1,19 @@
-package me.indiandollar.apps.popularmoviz;
+package me.indiandollar.apps.popularmoviz.Adapters;
 
 import android.content.Context;
-import android.media.Image;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
+
+import me.indiandollar.apps.popularmoviz.Models.Movie;
+import me.indiandollar.apps.popularmoviz.R;
 
 /**
  * Created by Indian Dollar on 12/31/2016.
@@ -36,7 +32,7 @@ public class GridViewAdapter extends BaseAdapter {
         mContext = c;
         inflater = LayoutInflater.from(mContext);
         mMovies = movies;
-        Log.d(TAG, "GridViewAdapter: " + mMovies.get(0).getPosterPath());
+        //Log.d(TAG, "GridViewAdapter: " + mMovies.get(0).getPosterPath());
     }
 
     @Override
@@ -81,9 +77,14 @@ public class GridViewAdapter extends BaseAdapter {
 
         //imageView.setImageResource(R.mipmap.ic_launcher);
 
+        //Log.d(TAG, "getView: " +  mMovies.get(position).getPosterPath());
+
+
         Picasso.with(mContext).load("http://image.tmdb.org/t/p/w185/" + mMovies.get(position).getPosterPath())
                 .placeholder(R.raw.ring)
                 .error(R.mipmap.ic_launcher)
+                .fit()
+                .centerCrop()
                 .into(imageView/*, new Callback() {
             @Override
             public void onSuccess() {

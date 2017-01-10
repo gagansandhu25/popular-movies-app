@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/temp_frame"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:layout_width="500dp"
+        android:layout_height="331dp"
+        android:id="@+id/movie_video_item_image"
+        />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/play"
+        android:id="@+id/movie_video_item_button"
+        android:background="@android:color/transparent"
+
+        android:layout_gravity="center_horizontal|center_vertical"/>
+
+
+</FrameLayout>

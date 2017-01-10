@@ -8,4 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppThemeFloatingActionBar" parent="AppTheme">
+        <!-- Customize your theme here. -->
+        <!--<item name="windowActionBarOverlay">true</item>-->
+
+    </style>
+
 </resources>

@@ -5,22 +5,9 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
 
-import org.json.JSONException;
-
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-
-import me.indiandollar.apps.popularmoviz.Config;
-import me.indiandollar.apps.popularmoviz.MainActivity;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Call;
-import okhttp3.Request;
-import okhttp3.Response;
 
 /**
  * Created by Indian Dollar on 12/31/2016.
@@ -37,14 +24,18 @@ public class NetworkUtilities {
     private static final String TAG = "NetworkUtilities";
 
     private Context mContext;
-    private MainActivity mActivity;
+    private int mMovieId;
 
-    public NetworkUtilities(Context context, MainActivity activity) {
+    public NetworkUtilities(Context context) {
         mContext = context;
-        mActivity = activity;
+    }
+    
+    public void setMovieId(int id) {
+        mMovieId = id;
+        Log.d(TAG, "setMovieId: " + mMovieId);
     }
 
-    public static URL buildUrl(String t) {
+    public URL buildUrl(String t) {
 
         URL url = null;
 
@@ -57,6 +48,12 @@ public class NetworkUtilities {
         }
         else if(t.contentEquals(Config.TMDB_TOP_RATED_PARAM)) {
             u += TMDB_TOP_RATED_MOVIES_PARAMS;
+        }
+        else if(t.contentEquals(Config.TMDB_MOVIE_TRAILER_PARAM)) {
+            u += "movie/" + mMovieId + "/" + Config.TMDB_MOVIE_TRAILERS_ROUTE;
+        }
+        else if(t.contentEquals(Config.TMDB_MOVIE_REVIEW_PARAM)) {
+            u += "movie/" + mMovieId + "/" + Config.TMDB_MOVIE_REVIEWS_ROUTE;
         }
 
         Uri uri = Uri.parse(u).buildUpon()
@@ -71,71 +68,17 @@ public class NetworkUtilities {
             e.printStackTrace();
         }
 
-        //Log.d(TAG, "buildUrl: " + url);
-
         return url;
 
     }
 
 
-    public void makeRequest(URL url) {
-
-        OkHttpClient okhttp = new OkHttpClient();
-        Request request = new Request.Builder().url(url.toString()).build();
-
-        if(isNetworkAvailable()) {
-
-            Call call = okhttp.newCall(request);
-            call.enqueue(new Callback() {
-                @Override
-                public void onFailure(Call call, IOException e) {
-                    //Log.d(TAG, "onFailure: " + e);
-                }
-
-                @Override
-                public void onResponse(Call call, Response response) throws IOException {
 
 
-                    final String jsonData = response.body().string();
-                    //Log.d(TAG, "onResponse: " + jsonData);
-                    if(response.isSuccessful()) {
-                        mActivity.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                try {
-                                    mActivity.getMovie(jsonData);
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        });
-                    }
-                    else {
-                        //Log.d(TAG, "onResponse: error");
-                    }
 
-                }
-            });
+    public static boolean isNetworkAvailable(Context context) {
 
-        }
-        else {
-            mActivity.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    Toast.makeText(mActivity, "Network unavailable", Toast.LENGTH_LONG).show();
-                }
-            });
-        }
-
-        //Log.d(TAG, "makeRequest: " + jsonData);
-
-        //return jsonData;
-    }
-
-
-    public boolean isNetworkAvailable() {
-
-        ConnectivityManager manager = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo info = manager.getActiveNetworkInfo();
         boolean isAvailable = false;
 

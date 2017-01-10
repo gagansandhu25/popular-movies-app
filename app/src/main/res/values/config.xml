@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="orientation" type="string">portrait</item>
+    <item name="multiPane" type="bool">false</item>
+    <item name="backdropSize" type="string">w342</item>
+</resources>

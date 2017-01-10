@@ -1,11 +1,8 @@
-package me.indiandollar.apps.popularmoviz;
+package me.indiandollar.apps.popularmoviz.Models;
 
+import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
-
-import org.json.JSONObject;
-
-import java.io.Serializable;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,8 +20,20 @@ public class Movie implements Parcelable {
     private Double mVoteAverage;
     private String mOverview;
     private String mPosterPath;
+    private Bitmap mPosterPathBitmap;
     private Double mPopularity;
     private String mReleaseDate;
+    private String mBackdropPath;
+
+    private String mRawReleaseDate;
+
+    public String getRawReleaseDate() {
+        return mRawReleaseDate;
+    }
+
+    public void setRawReleaseDate(String rawReleaseDate) {
+        mRawReleaseDate = rawReleaseDate;
+    }
 
 
     public Movie() {
@@ -33,10 +42,11 @@ public class Movie implements Parcelable {
     public String getReleaseDate() {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-DD");
         try {
-            Date newDate = format.parse(mReleaseDate);
+            Date newDate = format.parse(mRawReleaseDate);
 
             SimpleDateFormat date = new SimpleDateFormat("MMM yyyy");
-            return date.format(newDate);
+            mReleaseDate = date.format(newDate);
+            return mReleaseDate;
 
         } catch (ParseException e) {
             e.printStackTrace();
@@ -105,6 +115,14 @@ public class Movie implements Parcelable {
         mPosterPath = posterPath;
     }
 
+    public String getBackdropPath() {
+        return mBackdropPath;
+    }
+
+    public void setBackdropPath(String posterPath) {
+        mBackdropPath = posterPath;
+    }
+
     protected Movie(Parcel in) {
         mTitle = in.readString();
         mOriginalTitle = in.readString();
@@ -112,8 +130,10 @@ public class Movie implements Parcelable {
         mVoteAverage = in.readByte() == 0x00 ? null : in.readDouble();
         mOverview = in.readString();
         mPosterPath = in.readString();
+        mBackdropPath = in.readString();
         mPopularity = in.readByte() == 0x00 ? null : in.readDouble();
         mReleaseDate = in.readString();
+        mRawReleaseDate = in.readString();
     }
 
     @Override
@@ -139,6 +159,7 @@ public class Movie implements Parcelable {
         }
         dest.writeString(mOverview);
         dest.writeString(mPosterPath);
+        dest.writeString(mBackdropPath);
         if (mPopularity == null) {
             dest.writeByte((byte) (0x00));
         } else {
@@ -146,6 +167,7 @@ public class Movie implements Parcelable {
             dest.writeDouble(mPopularity);
         }
         dest.writeString(mReleaseDate);
+        dest.writeString(mRawReleaseDate);
     }
 
     @SuppressWarnings("unused")
@@ -160,4 +182,13 @@ public class Movie implements Parcelable {
             return new Movie[size];
         }
     };
+
+
+    public void setPosterPath(Bitmap res) {
+        mPosterPathBitmap = res;
+    }
+
+    public Bitmap getPosterPathBitmap() {
+        return mPosterPathBitmap;
+    }
 }

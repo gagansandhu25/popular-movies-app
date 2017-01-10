@@ -17,6 +17,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main {
+            java.srcDirs = ['src/main/java', 'src/main/java/2/Fragments', 'src/main/java/me.indiandollar.apps.popularmoviz/Fragments']
+        }
+    }
 }
 
 dependencies {
@@ -25,9 +30,12 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:24.2.1'
-    compile 'com.android.support:recyclerview-v7:24.1.1'
+    compile 'com.android.support:recyclerview-v7:24.2.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.squareup.okhttp3:okhttp:3.5.0'
     compile 'com.jakewharton:butterknife:8.4.0'
+    compile 'com.github.manuelpeinado.fadingactionbar:fadingactionbar-abc:3.1.2'
+    compile 'com.android.support:support-v4:24.2.1'
+    compile 'com.facebook.stetho:stetho:1.4.2'
     testCompile 'junit:junit:4.12'
 }
