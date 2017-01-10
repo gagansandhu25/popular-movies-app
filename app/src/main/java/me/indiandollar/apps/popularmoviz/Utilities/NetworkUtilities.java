@@ -31,8 +31,9 @@ public class NetworkUtilities {
     }
     
     public void setMovieId(int id) {
+
         mMovieId = id;
-        Log.d(TAG, "setMovieId: " + mMovieId);
+
     }
 
     public URL buildUrl(String t) {
@@ -40,8 +41,6 @@ public class NetworkUtilities {
         URL url = null;
 
         String u = TMDB_BASE_URL;
-
-        Log.d(TAG, "buildUrl: " + t.contentEquals(Config.TMDB_TOP_RATED_PARAM));
 
         if(t.contentEquals(Config.TMDB_POPULAR_PARAM)) {
             u += TMDB_POPULAR_MOVIES_PARAMS;
@@ -59,8 +58,6 @@ public class NetworkUtilities {
         Uri uri = Uri.parse(u).buildUpon()
                 .appendQueryParameter(TMDB_PARAM_API_KEY, TMDB_API_KEY)
                 .build();
-
-        Log.d(TAG, "URL is: " + uri.toString());
 
         try {
             url = new URL(uri.toString());

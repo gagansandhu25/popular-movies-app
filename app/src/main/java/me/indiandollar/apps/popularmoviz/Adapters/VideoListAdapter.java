@@ -33,9 +33,9 @@ public class VideoListAdapter extends PagerAdapter {
 
 
     public VideoListAdapter(Context c, ArrayList<MovieVideo> videos) {
+
         mContext = c;
         mVideos = videos;
-        //Log.d(TAG, "VideoListAdapter: " + mVideos);
 
     }
 
@@ -55,26 +55,10 @@ public class VideoListAdapter extends PagerAdapter {
         LayoutInflater layoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View item_view = layoutInflater.inflate(R.layout.movie_video_item, container, false);
-        //ViewPager viewPager = (ViewPager) item_view.findViewById(R.id.trailersHolder);
-        //TextView textView = (TextView) item_view.findViewById(R.id.movie_video_item_label);
         ImageView imageView = (ImageView) item_view.findViewById(R.id.movie_video_item_image);
         ImageButton imageButton = (ImageButton) item_view.findViewById(R.id.movie_video_item_button);
 
-        /*ViewGroup item_view1 = (ViewGroup) layoutInflater.inflate(R.layout.fragment_movie_trailers, container, false);
-        View item_view11 = item_view1.findViewById(R.id.movietrailersFrame);
-        final TextView offlineTextView = (TextView) item_view11.findViewById(R.id.offlineTextView);
-
-        Log.d(TAG, "instantiateItem: " + offlineTextView);
-
-        offlineTextView.setText("called");
-        offlineTextView.setVisibility(View.VISIBLE);*/
-
-        //textView.setText(mVideos.get(position).getId());
-
         String size = mContext.getResources().getString(R.string.backdropSize);
-
-        Log.d(TAG, "instantiateItem: " + size);
-
 
         Picasso.with(mContext).load("http://image.tmdb.org/t/p/"+size+"/" + mVideos.get(position).getVideoThumbnail())
                 .placeholder(R.raw.ring)

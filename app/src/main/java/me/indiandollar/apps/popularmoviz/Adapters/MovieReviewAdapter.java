@@ -30,9 +30,11 @@ public class MovieReviewAdapter extends BaseAdapter {
     private LayoutInflater inflater;
 
     public MovieReviewAdapter(Context c, ArrayList<MovieReview> reviews) {
+
         mContext = c;
         inflater = LayoutInflater.from(mContext);
         mReviews = reviews;
+
     }
 
     @Override
@@ -59,16 +61,12 @@ public class MovieReviewAdapter extends BaseAdapter {
         TextView textView2;
 
         if (convertView == null) {
-            // if it's not recycled, initialize some attributes
 
-            inflater1 = (View) inflater.inflate(R.layout.movie_review_item, null);
+            inflater1 = inflater.inflate(R.layout.movie_review_item, null);
             textView = (TextView) inflater1.findViewById(R.id.movie_review_user_name);
 
             textView2 = (TextView) inflater1.findViewById(R.id.movie_review_content);
 
-            //imageView.setLayoutParams(new GridView.LayoutParams(185, 277));
-            //imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            //imageView.setPadding(8, 8, 8, 8);
         }
         else {
             inflater1 = convertView;

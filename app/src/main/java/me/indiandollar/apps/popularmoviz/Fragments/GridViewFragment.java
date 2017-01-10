@@ -266,7 +266,6 @@ public class GridViewFragment extends Fragment {
                 mMovies = new ArrayList<>();
                 while(cursor.moveToNext()) {
                     Movie movie = new Movie();
-                    //movie.setId(cursor.getInt(0));
                     movie.setId(cursor.getInt(1));
                     movie.setOriginalTitle(cursor.getString(2));
                     movie.setTitle(cursor.getString(2));
@@ -278,8 +277,6 @@ public class GridViewFragment extends Fragment {
 
                     mMovies.add(movie);
                 }
-
-                Log.d(TAG, "doInBackground: " + mMovies);
 
                 cursor.close();
 
@@ -300,6 +297,8 @@ public class GridViewFragment extends Fragment {
 
     }
 
+
+
     private void setFavoritesAdapter() {
 
         toggleLoader("hide");
@@ -312,7 +311,6 @@ public class GridViewFragment extends Fragment {
 
 
     // network request
-
     public void makeRequest(URL url) {
 
         OkHttpClient okhttp = new OkHttpClient();
@@ -359,14 +357,12 @@ public class GridViewFragment extends Fragment {
             a.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Toast.makeText((FragmentActivity) mContext, "Network unavailable", Toast.LENGTH_LONG).show();
+                    Toast.makeText(mContext, "Network unavailable", Toast.LENGTH_LONG).show();
                 }
             });
         }
 
     }
-
-
 
 
 
@@ -382,6 +378,7 @@ public class GridViewFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         int menuItemSelected = item.getItemId();
 
         if(menuItemSelected == R.id.action_show_popular) {
@@ -428,15 +425,16 @@ public class GridViewFragment extends Fragment {
 
         return false;
 
-
     }
 
 
     @Override
     public void onDestroy() {
+
         super.onDestroy();
         if(mDbHelper != null) {
             mDbHelper.close();
         }
+
     }
 }

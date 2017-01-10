@@ -181,43 +181,6 @@ public class MovieDetailsFragment extends Fragment {
 
                 return null;
 
-
-                /*try {
-
-
-                    //Log.d(TAG, "doInBackground: " + newRowId);
-
-                    if(newRowId != -1) {
-                        FragmentActivity a = (FragmentActivity) mContext;
-                        a.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(mActivity, "Movie marked as favorite", Toast.LENGTH_LONG).show();
-                            }
-                        });
-
-                    }
-                    else {
-                        FragmentActivity a = (FragmentActivity) mContext;
-                        a.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(mActivity, "Something went wrong, cannot add to favorites", Toast.LENGTH_LONG).show();
-                            }
-                        });
-
-                    }
-                }
-                catch(final SQLiteConstraintException e) {
-                    FragmentActivity a = (FragmentActivity) mContext;
-                    a.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_LONG).show();
-                        }
-                    });
-                }*/
-
             }
         }.execute();
 
@@ -254,7 +217,7 @@ public class MovieDetailsFragment extends Fragment {
         mTrailersHolder = (ViewPager) view.findViewById(R.id.trailersHolder);
 
         mMovieTitle = (TextView) view.findViewById(R.id.movieNameLabel);
-        Log.d(TAG, "onCreateView: " + view);
+
         mMovieReleaseDate = (TextView) view.findViewById(R.id.movieDateLabel);
         mMovieRating = (TextView) view.findViewById(R.id.movieRatingLabel);
         mMovieImage = (ImageView) view.findViewById(R.id.movieImageView);
@@ -284,8 +247,6 @@ public class MovieDetailsFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Log.d(TAG, "onCreateView: " + savedInstanceState);
-
         if(savedInstanceState != null && savedInstanceState.containsKey("trailers_list")) {
             mVideosList = savedInstanceState.getParcelableArrayList("trailers_list");
             mTrailersHolder.setAdapter(new VideoListAdapter(mContext, mVideosList));
@@ -306,7 +267,7 @@ public class MovieDetailsFragment extends Fragment {
     public void onSaveInstanceState(Bundle outState) {
 
         super.onSaveInstanceState(outState);
-        Log.d(TAG, "onSaveInstanceState: " + mVideosList);
+
         outState.<MovieVideo>putParcelableArrayList("trailers_list", mVideosList);
 
     }
@@ -359,8 +320,6 @@ public class MovieDetailsFragment extends Fragment {
 
             offlineTextView.setVisibility(View.VISIBLE);
 
-
-
             Toast.makeText(mContext, "Network unavailable", Toast.LENGTH_LONG).show();
         }
 
@@ -386,8 +345,6 @@ public class MovieDetailsFragment extends Fragment {
             mVideosList.add(i, movie);
         }
 
-        Log.d(TAG, "parseMovieTrailers: " + mVideosList);
-
         VideoListAdapter arrayAdapter = new VideoListAdapter(mActivity, mVideosList);
         mTrailersHolder.setAdapter(arrayAdapter);
 
@@ -400,7 +357,6 @@ public class MovieDetailsFragment extends Fragment {
 
 
     // fetch reviews
-
     private void getReviews(URL url) {
 
         OkHttpClient okhttp = new OkHttpClient();
@@ -452,7 +408,7 @@ public class MovieDetailsFragment extends Fragment {
             a.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Toast.makeText((FragmentActivity) mContext, "Network unavailable", Toast.LENGTH_LONG).show();
+                    Toast.makeText(mContext, "Network unavailable", Toast.LENGTH_LONG).show();
                 }
             });
         }
@@ -475,8 +431,6 @@ public class MovieDetailsFragment extends Fragment {
 
             mReviewsList.add(i, review);
         }
-
-        Log.d(TAG, "parseMovieReviews: " + mReviewsList);
 
         MovieReviewAdapter arrayAdapter = new MovieReviewAdapter(mActivity, mReviewsList);
         mReviewsHolder.setAdapter(arrayAdapter);
