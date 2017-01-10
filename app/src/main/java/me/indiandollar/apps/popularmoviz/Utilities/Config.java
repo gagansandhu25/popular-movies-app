@@ -7,7 +7,7 @@ package me.indiandollar.apps.popularmoviz.Utilities;
 public class Config {
 
     public final static String TMDB_BASE_URL = "https://api.themoviedb.org/3/";
-    public final static String TMDB_API_KEY = "6e6eeddee507bba2f38b5a37316c0137";
+    public final static String TMDB_API_KEY = ""; // tmdb key here
     public final static String TMDB_PARAM_API_KEY = "api_key";
     public static final String TMDB_TOP_RATED_MOVIES_PARAMS = "movie/top_rated";
     public final static String TMDB_POPULAR_MOVIES_PARAMS = "movie/popular";
